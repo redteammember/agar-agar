@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- Diese Datei baut das Grundgerüst (Skelett) unserer Webseite auf -->
+<html lang="en">
+<head>
+    <!-- Grundeinstellungen für den Browser (z.B. wie Buchstaben dargestellt werden sollen) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Der Titel, der oben im Tab des Browsers angezeigt wird -->
+    <title>Agar.io Clone</title>
+    <!-- Verbindet unsere HTML-Struktur mit der Design-Datei (CSS), damit es gut aussieht -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Hauptmenü: Das ist der Bereich, den man sieht, bevor das Spiel startet -->
+    <div id="main-menu" class="menu-container">
+        <!-- Ein durchsichtiges Fenster für das Menü -->
+        <div class="glass-panel fade-in menu-box">
+            <!-- Die große Überschrift -->
+            <h1 class="title">Agar.io</h1>
+            <!-- Der kleine Text darunter -->
+            <p class="subtitle">Tritt der Arena bei!</p>
+            <!-- Ein Textfeld, in das der Spieler seinen Namen tippen kann (maximal 15 Buchstaben) -->
+            <input type="text" id="nickname" placeholder="Nickname (optional)" maxlength="15">
+            <!-- Der Knopf zum Starten des Spiels -->
+            <button id="play-btn">Als Gast spielen</button>
+        </div>
+    </div>
+
+    <!-- Spiel-Oberfläche: Dieser Teil ist am Anfang versteckt (display: none) und wird erst beim Start gezeigt -->
+    <div id="game-ui" style="display: none;">
+        <!-- Die 'canvas' (Leinwand) ist die Fläche, auf der das Spiel gezeichnet wird (Spieler, Futter, etc.) -->
+        <canvas id="game-canvas"></canvas>
+        
+        <!-- Ein kleines Fenster oben rechts, das technische Details zur Internetverbindung anzeigt -->
+        <div class="glass-panel fade-in diagnostics">
+            <h3>Netzwerk-Diagnose</h3>
+            <div class="stat-row">
+                <span class="stat-label">Bilder pro Sekunde (FPS):</span>
+                <span id="stat-fps" class="stat-value">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Verzögerung (Ping):</span>
+                <span id="stat-ping" class="stat-value">0 ms</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Empfangene Daten (Rx):</span>
+                <span id="stat-rx" class="stat-value">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">Gesendete Daten (Tx):</span>
+                <span id="stat-tx" class="stat-value">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Das bindet unsere JavaScript-Datei ein, die dem Spiel Leben einhaucht (Bewegung, Klicks, Server-Verbindung) -->
+    <script src="game.js"></script>
+</body>
+</html>

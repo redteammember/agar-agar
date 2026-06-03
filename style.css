@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+
+/* Hier legen wir unsere Basis-Farben an, wie auf einer Malerpalette.
+   Das macht es einfacher, später Farben zu ändern, da wir sie nur hier anpassen müssen. */
+:root {
+  --bg-color: #0f172a; /* Die dunkelblaue Hintergrundfarbe */
+  --panel-bg: rgba(30, 41, 59, 0.7); /* Eine halbtransparente, leicht hellere Farbe für Fenster */
+  --border-color: rgba(255, 255, 255, 0.1); /* Eine sehr helle, fast unsichtbare Rahmenfarbe */
+  --primary: #3b82f6; /* Unser Haupt-Blau, z.B. für Knöpfe */
+  --primary-hover: #2563eb; /* Ein etwas dunkleres Blau, wenn man mit der Maus über den Knopf fährt */
+  --text-color: #f8fafc; /* Die Textfarbe, fast komplett Weiß */
+}
+
+/* Dies gilt für die gesamte Webseite (den "Körper" oder "body") */
+body {
+  margin: 0; /* Kein Abstand zum Rand des Browserfensters */
+  padding: 0;
+  font-family: 'Outfit', sans-serif; /* Die Schriftart, die wir ganz oben importiert haben */
+  background-color: var(--bg-color); /* Wir benutzen unsere Hintergrundfarbe von der Palette oben */
+  color: var(--text-color); /* Wir benutzen unsere weiße Textfarbe */
+  overflow: hidden; /* Verhindert, dass man hoch- oder runterscrollen kann (das Spiel füllt den ganzen Bildschirm) */
+}
+
+/* Dies erzeugt den modernen "Milchglas-Effekt" (Glassmorphism) für unsere Menüfenster */
+.glass-panel {
+  background: var(--panel-bg); /* Leicht durchsichtiger Hintergrund */
+  backdrop-filter: blur(12px); /* Dies verschwommen den Hintergrund hinter dem Fenster, wie Milchglas */
+  -webkit-backdrop-filter: blur(12px); /* Gleicher Effekt für Safari-Browser */
+  border: 1px solid var(--border-color); /* Ein ganz dünner Rahmen */
+  border-radius: 16px; /* Abgerundete Ecken am Fenster */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Ein dunkler Schatten, damit das Fenster "schwebt" */
+}
+
+/* Menu Container */
+.menu-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.menu-box {
+  padding: 40px;
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin: 0 0 8px 0;
+  background: linear-gradient(to right, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: #94a3b8;
+  margin-bottom: 32px;
+}
+
+input {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: rgba(15, 23, 42, 0.6);
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Das ist der Button (Knopf) zum Spielen */
+button {
+  width: 100%; /* Der Knopf füllt die ganze Breite des Fensters aus */
+  padding: 14px 20px;
+  border: none; /* Kein Rand */
+  border-radius: 8px; /* Leicht abgerundete Ecken */
+  background: linear-gradient(135deg, var(--primary), #60a5fa); /* Ein Farbverlauf von Blau zu Hellblau */
+  color: white; /* Weißer Text */
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600; /* Etwas dickerer Text (fett) */
+  font-size: 1.1rem;
+  cursor: pointer; /* Wenn man mit der Maus drüberfährt, wird der Cursor zu einer Hand (klickbar) */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Macht Animationen (wie das Klicken) weich und fließend */
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4); /* Ein blauer Leuchteffekt (Schatten) */
+}
+
+/* Was passiert, wenn die Maus über dem Knopf schwebt */
+button:hover {
+  transform: translateY(-2px); /* Der Knopf bewegt sich ein kleines Stück nach oben, als würde er "aufstehen" */
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6); /* Der blaue Leuchteffekt wird stärker */
+}
+
+/* Was passiert, wenn man den Knopf anklickt (gedrückt hält) */
+button:active {
+  transform: translateY(0); /* Der Knopf geht wieder nach unten, wie ein echter Knopf, den man reindrückt */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Game Canvas */
+#game-canvas {
+  display: block;
+  cursor: crosshair;
+}
+
+/* Diagnostics */
+.diagnostics {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 20px;
+  width: 240px;
+  pointer-events: none;
+}
+
+.diagnostics h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.1rem;
+  color: #60a5fa;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: #94a3b8;
+}
+
+.stat-value {
+  font-weight: bold;
+}
